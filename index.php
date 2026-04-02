@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password  = 'kzjlqgccbfrkhqsb';          
         // ============================================================
 
-        $subject = "Your JavaGoat Verification Code";
+        $subject = "Your Ahm Food Verification Code";
         $message_body = "Your OTP Code is: " . $otp;
 
         $result = send_smtp_mail($to, $subject, $message_body, $username, $password, $smtp_host, $smtp_port);
@@ -81,7 +81,7 @@ function send_smtp_mail($to, $subject, $body, $user, $pass, $host, $port) {
 
     $headers  = "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-    $headers .= "From: JavaGoat <{$user}>\r\n";
+    $headers .= "From: Ahm Food <{$user}>\r\n";
     $headers .= "To: <{$to}>\r\n";
     $headers .= "Subject: {$subject}\r\n";
 
@@ -100,7 +100,7 @@ function send_smtp_mail($to, $subject, $body, $user, $pass, $host, $port) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>JavaGoat</title>
+    <title>Ahm Food</title>
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -471,7 +471,7 @@ function send_smtp_mail($to, $subject, $body, $user, $pass, $host, $port) {
                     <div class="auth-header">
                         <div class="logo-circle"><i class="fas fa-leaf"></i></div>
                         <h1>Welcome Back</h1>
-                        <p>Sign in to continue to JavaGoat</p>
+                        <p>Sign in to continue to Ahm Food</p>
                     </div>
                     
                     <div class="auth-body">
@@ -509,7 +509,7 @@ function send_smtp_mail($to, $subject, $body, $user, $pass, $host, $port) {
                     <div class="auth-header">
                         <div class="logo-circle"><i class="fas fa-user-plus"></i></div>
                         <h1>Create Account</h1>
-                        <p>Join the JavaGoat community</p>
+                        <p>Join the Ahm Food community</p>
                     </div>
                     
                     <div class="auth-body">
@@ -543,7 +543,7 @@ function send_smtp_mail($to, $subject, $body, $user, $pass, $host, $port) {
         <div id="appContainer" class="page">
             <header class="app-header">
                 <div class="header-top">
-                    <h1><i class="fas fa-leaf" style="margin-right:10px;"></i> JavaGoat</h1>
+                    <h1><i class="fas fa-leaf" style="margin-right:10px;"></i> Ahm Food</h1>
                     <div class="user-greeting" id="userGreeting">Hello, Guest</div>
                 </div>
                 <div class="search-bar">

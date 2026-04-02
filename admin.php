@@ -15,7 +15,7 @@ $firebaseConfig = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>JavaGoat Admin | Premium Dashboard</title>
+    <title>Ahm Food Admin | Premium Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -328,7 +328,7 @@ $firebaseConfig = [
     <div id="authOverlay">
         <div class="login-box">
             <div class="logo" style="justify-content: center; color: var(--text-main); margin-bottom: 15px;">
-                <i class="fas fa-leaf"></i> JavaGoat
+                <i class="fas fa-leaf"></i> Ahm Food
             </div>
             <h2 style="margin-bottom: 25px; letter-spacing: -1px;">Admin Login</h2>
             <input type="email" id="adminEmail" placeholder="Email Address">
@@ -340,7 +340,7 @@ $firebaseConfig = [
 
     <!-- SIDEBAR -->
     <div class="sidebar" id="sidebar">
-        <div class="logo"><i class="fas fa-leaf"></i> JavaGoat</div>
+        <div class="logo"><i class="fas fa-leaf"></i> Ahm Food</div>
         <ul class="nav-links">
             <li class="nav-item active" data-target="dashboard">
                 <i class="fas fa-chart-line"></i> <span>Dashboard</span>
