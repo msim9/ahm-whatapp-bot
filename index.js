@@ -173,36 +173,6 @@ async function startBot() {
                 id: `order ${item.name.toLowerCase()}`
             }));
 
-            const innerMenu = proto.Message.InteractiveMessage.create({
-                body: proto.Message.InteractiveMessage.Body.create({
-                    text: "🍔 *AHM FOOD LIVE MENU* 🍕\n\nPlease select a dish to order securely via WhatsApp:"
-                }),
-                footer: proto.Message.InteractiveMessage.Footer.create({
-                    text: "Tap the button below"
-                }),
-                header: proto.Message.InteractiveMessage.Header.create({
-                    title: "Live Menu",
-                    subtitle: "",
-                    hasMediaAttachment: false
-                }),
-                nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-                    buttons: [
-                        {
-                            name: "single_select",
-                            buttonParamsJson: JSON.stringify({
-                                title: "View Dishes",
-                                sections: [
-                                    {
-                                        title: "Available Dishes",
-                                        rows: menuRows
-                                    }
-                                ]
-                            })
-                        }
-                    ]
-                })
-            });
-
             const msgWrapper = generateWAMessageFromContent(sender, {
                 viewOnceMessage: {
                     message: {
@@ -210,7 +180,22 @@ async function startBot() {
                             deviceListMetadata: {},
                             deviceListMetadataVersion: 2
                         },
-                        interactiveMessage: innerMenu
+                        interactiveMessage: {
+                            body: { text: "🍔 *AHM FOOD LIVE MENU* 🍕\n\nPlease select a dish to order securely via WhatsApp:" },
+                            footer: { text: "Tap the button below" },
+                            header: { title: "Live Menu", subtitle: "", hasMediaAttachment: false },
+                            nativeFlowMessage: {
+                                buttons: [
+                                    {
+                                        name: "single_select",
+                                        buttonParamsJson: JSON.stringify({
+                                            title: "View Dishes",
+                                            sections: [{ title: "Available Dishes", rows: menuRows }]
+                                        })
+                                    }
+                                ]
+                            }
+                        }
                     }
                 }
             }, { userJid: sock.user.id });
@@ -220,58 +205,48 @@ async function startBot() {
 
         // --- GREETINGS ---
         else if (text.includes("hi") || text.includes("hello") || text.includes("hey")) {
-            const innerMenu = proto.Message.InteractiveMessage.create({
-                body: proto.Message.InteractiveMessage.Body.create({
-                    text: "👋 *Welcome to Ahm Food!*\n\nI am your AI Assistant.\nTap the desired option:"
-                }),
-                footer: proto.Message.InteractiveMessage.Footer.create({
-                    text: "Ahm Food Interactive Menu"
-                }),
-                header: proto.Message.InteractiveMessage.Header.create({
-                    title: "How can I help you?",
-                    subtitle: "",
-                    hasMediaAttachment: false
-                }),
-                nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
-                    buttons: [
-                        {
-                            name: "single_select",
-                            buttonParamsJson: JSON.stringify({
-                                title: "Show Options",
-                                sections: [
-                                    {
-                                        title: "Food Services",
-                                        rows: [
-                                            { header: "", title: "🍔 View Menu", description: "See our delicious food", id: "menu" },
-                                            { header: "", title: "🛒 Order Now", description: "Order your favorite dish!", id: "order" }
-                                        ]
-                                    },
-                                    {
-                                        title: "Other Services",
-                                        rows: [
-                                            { header: "", title: "📞 Contact Support", description: "Get help from our team", id: "contact" }
-                                        ]
-                                    }
-                                ]
-                            })
-                        }
-                    ]
-                })
-            });
-
-            const menuWrapper = generateWAMessageFromContent(sender, {
+            const msgWrapper = generateWAMessageFromContent(sender, {
                 viewOnceMessage: {
                     message: {
                         messageContextInfo: {
                             deviceListMetadata: {},
                             deviceListMetadataVersion: 2
                         },
-                        interactiveMessage: innerMenu
+                        interactiveMessage: {
+                            body: { text: "👋 *Welcome to Ahm Food!*\n\nI am your AI Assistant.\nTap the desired option:" },
+                            footer: { text: "Ahm Food Interactive Menu" },
+                            header: { title: "How can I help you?", subtitle: "", hasMediaAttachment: false },
+                            nativeFlowMessage: {
+                                buttons: [
+                                    {
+                                        name: "single_select",
+                                        buttonParamsJson: JSON.stringify({
+                                            title: "Show Options",
+                                            sections: [
+                                                {
+                                                    title: "Food Services",
+                                                    rows: [
+                                                        { header: "", title: "🍔 View Menu", description: "See our delicious food", id: "menu" },
+                                                        { header: "", title: "🛒 Order Now", description: "Order your favorite dish!", id: "order" }
+                                                    ]
+                                                },
+                                                {
+                                                    title: "Other Services",
+                                                    rows: [
+                                                        { header: "", title: "📞 Contact Support", description: "Get help from our team", id: "contact" }
+                                                    ]
+                                                }
+                                            ]
+                                        })
+                                    }
+                                ]
+                            }
+                        }
                     }
                 }
             }, { userJid: sock.user.id });
 
-            await sock.relayMessage(sender, menuWrapper.message, { messageId: menuWrapper.key.id });
+            await sock.relayMessage(sender, msgWrapper.message, { messageId: msgWrapper.key.id });
         }
         else if (text.includes("contact") || text.includes("call")) {
             await sock.sendMessage(sender, { text: "📞 *Contact Ahm Food:* \n\n- *Email:* support@ahmfood.com" });
