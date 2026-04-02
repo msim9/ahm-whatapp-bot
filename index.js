@@ -166,13 +166,56 @@ async function startBot() {
                 return;
             }
 
-            let menuMessage = "🍔 *AHM FOOD LIVE MENU* 🍕\n\n";
-            currentMenu.forEach(item => {
-                menuMessage += `🔸 *${item.name}* - RS${item.price}\n`;
-            });
-            menuMessage += "\n_To order, reply with 'order [dish name]'_";
+            const menuRows = currentMenu.map(item => ({
+                header: "",
+                title: `🍔 ${item.name}`,
+                description: `RS${item.price} - Tap to order!`,
+                id: `order ${item.name.toLowerCase()}`
+            }));
 
-            await sock.sendMessage(sender, { text: menuMessage });
+            const innerMenu = proto.Message.InteractiveMessage.create({
+                body: proto.Message.InteractiveMessage.Body.create({
+                    text: "🍔 *AHM FOOD LIVE MENU* 🍕\n\nPlease select a dish to order securely via WhatsApp:"
+                }),
+                footer: proto.Message.InteractiveMessage.Footer.create({
+                    text: "Tap the button below"
+                }),
+                header: proto.Message.InteractiveMessage.Header.create({
+                    title: "Live Menu",
+                    subtitle: "",
+                    hasMediaAttachment: false
+                }),
+                nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+                    buttons: [
+                        {
+                            name: "single_select",
+                            buttonParamsJson: JSON.stringify({
+                                title: "View Dishes",
+                                sections: [
+                                    {
+                                        title: "Available Dishes",
+                                        rows: menuRows
+                                    }
+                                ]
+                            })
+                        }
+                    ]
+                })
+            });
+
+            const msgWrapper = generateWAMessageFromContent(sender, {
+                viewOnceMessage: {
+                    message: {
+                        messageContextInfo: {
+                            deviceListMetadata: {},
+                            deviceListMetadataVersion: 2
+                        },
+                        interactiveMessage: innerMenu
+                    }
+                }
+            }, { userJid: sock.user.id });
+
+            await sock.relayMessage(sender, msgWrapper.message, { messageId: msgWrapper.key.id });
         }
 
         // --- GREETINGS ---
