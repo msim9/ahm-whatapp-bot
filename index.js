@@ -149,8 +149,7 @@ async function startBot() {
         else if (text === "order") { 
             await sock.sendMessage(sender, { text: "🛒 *How to order:* \nPlease type 'order' followed by the dish name. \nExample: *order pizza*" });
         }
-        
-        // --- DYNAMIC MENU FEATURE ---
+         // --- DYNAMIC MENU FEATURE ---
         else if (text.includes("menu") || text.includes("price") || text.includes("list") || text.includes("food")) {
             const currentMenu = await getMenuFromApp();
             
@@ -159,7 +158,7 @@ async function startBot() {
                 return;
             }
 
-            let menuMessage = "🍔 *JAVAGOAT LIVE MENU* 🍕\n\n";
+            let menuMessage = "🍔 *AHM Food LIVE MENU* 🍕\n\n";
             currentMenu.forEach(item => {
                 menuMessage += `🔸 *${item.name}* - ₹${item.price}\n`;
             });
@@ -170,10 +169,10 @@ async function startBot() {
 
         // --- GREETINGS ---
         else if (text.includes("hi") || text.includes("hello") || text.includes("hey")) {
-            await sock.sendMessage(sender, { text: "👋 *Welcome to JavaGoat!* \n\nI am your AI Assistant. Type *menu* to see our delicious food, or type *order [dish]* to buy instantly!" });
+            await sock.sendMessage(sender, { text: "👋 *Welcome to AHM Food !* \n\nI am your AI Assistant. Type *menu* to see our delicious food, or type *order [dish]* to buy instantly!" });
         }
         else if (text.includes("contact") || text.includes("call")) {
-            await sock.sendMessage(sender, { text: "📞 *Contact JavaGoat:* \n\n- *Email:* support@javagoat.com" });
+            await sock.sendMessage(sender, { text: "📞 *Contact AHM Food:* \n\n- *Email:* support@ahmhost.com" });
         }
         else {
             await sock.sendMessage(sender, { text: "🤔 I didn't quite catch that.\n\nType *menu* to see our food list, or *order [food]* to place an order!" });
