@@ -50,7 +50,8 @@ async function startBot() {
         if (qr) {
             console.clear(); 
             console.log('\n==================================================');
-            console.log('⚠️ QR CODE TOO BIG? CLICK "View raw logs" in top right!');
+            console.log('⚠️ TERMINAL QR NOT SCANNING? CLICK THE LINK BELOW:');
+            console.log(`🔗 https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(qr)}`);
             console.log('==================================================\n');
             qrcode.generate(qr, { small: true }); 
         }
