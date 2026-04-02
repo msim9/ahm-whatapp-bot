@@ -1,24 +1,27 @@
 <?php
 // --- FIREBASE CONFIGURATION ---
 $firebaseConfig = [
-  "apiKey" => "YOUR_API_KEY_HERE",
-  "authDomain" => "YOUR_PROJECT_ID.firebaseapp.com",
-  "databaseURL" => "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-  "projectId" => "YOUR_PROJECT_ID",
-  "storageBucket" => "YOUR_PROJECT_ID.firebasestorage.app",
-  "messagingSenderId" => "YOUR_MESSAGING_SENDER_ID",
-  "appId" => "YOUR_APP_ID"
+    "apiKey" => "AIzaSyCGeUqlY7FWg3sZArmxb0lOdP5EHmkCnmw",
+    "authDomain" => "ahm-whatapp-bot.firebaseapp.com",
+    "databaseURL" => "https://ahm-whatapp-bot-default-rtdb.firebaseio.com",
+    "projectId" => "ahm-whatapp-bot",
+    "storageBucket" => "ahm-whatapp-bot.firebasestorage.app",
+    "messagingSenderId" => "512016797572",
+    "appId" => "1:512016797572:web:e32bf5556f415b6816d7d1"
 ];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ahm Food Admin | Premium Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
         :root {
@@ -36,7 +39,10 @@ $firebaseConfig = [
             --info: #3b82f6;
         }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
 
         body {
             margin: 0;
@@ -49,8 +55,15 @@ $firebaseConfig = [
         }
 
         /* --- Custom Scrollbar --- */
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
 
         /* --- Sidebar --- */
         .sidebar {
@@ -73,9 +86,18 @@ $firebaseConfig = [
             margin-bottom: 40px;
             letter-spacing: -0.5px;
         }
-        .logo i { color: var(--primary); }
 
-        .nav-links { list-style: none; padding: 0; margin: 0; flex: 1; }
+        .logo i {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+        }
+
         .nav-item {
             display: flex;
             align-items: center;
@@ -88,11 +110,26 @@ $firebaseConfig = [
             font-weight: 500;
             transition: all 0.2s;
         }
-        .nav-item i { width: 24px; font-size: 1.1rem; }
-        .nav-item:hover { background: rgba(255,255,255,0.05); color: white; }
-        .nav-item.active { background: var(--primary); color: white; }
 
-        .logout-btn { color: #f87171; margin-top: auto; }
+        .nav-item i {
+            width: 24px;
+            font-size: 1.1rem;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .logout-btn {
+            color: #f87171;
+            margin-top: auto;
+        }
 
         /* --- Main Layout --- */
         .main-wrapper {
@@ -113,7 +150,11 @@ $firebaseConfig = [
             justify-content: space-between;
         }
 
-        .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
 
         .content-area {
             flex: 1;
@@ -122,9 +163,26 @@ $firebaseConfig = [
         }
 
         /* --- Sections --- */
-        .section { display: none; }
-        .section.active { display: block; animation: fadeIn 0.4s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         .header-flex {
             display: flex;
@@ -132,7 +190,13 @@ $firebaseConfig = [
             align-items: center;
             margin-bottom: 30px;
         }
-        .header-flex h1 { font-size: 1.8rem; font-weight: 800; margin: 0; letter-spacing: -1px; }
+
+        .header-flex h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -1px;
+        }
 
         /* --- Stats Card --- */
         .stats-grid {
@@ -141,6 +205,7 @@ $firebaseConfig = [
             gap: 20px;
             margin-bottom: 40px;
         }
+
         .stat-card {
             background: white;
             padding: 24px;
@@ -150,16 +215,31 @@ $firebaseConfig = [
             align-items: center;
             gap: 20px;
         }
+
         .stat-icon {
-            width: 54px; height: 54px;
+            width: 54px;
+            height: 54px;
             background: var(--primary-soft);
             color: var(--primary);
             border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 1.4rem;
         }
-        .stat-info h3 { margin: 0; font-size: 1.6rem; font-weight: 800; }
-        .stat-info p { margin: 2px 0 0; color: var(--text-muted); font-size: 0.9rem; font-weight: 600; }
+
+        .stat-info h3 {
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        .stat-info p {
+            margin: 2px 0 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
 
         /* --- Orders Table --- */
         .table-container {
@@ -167,9 +247,14 @@ $firebaseConfig = [
             border-radius: 20px;
             border: 1px solid var(--border);
             overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
-        table { width: 100%; border-collapse: collapse; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
         th {
             background: #f8fafc;
             padding: 16px 24px;
@@ -180,20 +265,39 @@ $firebaseConfig = [
             color: var(--text-muted);
             border-bottom: 1px solid var(--border);
         }
+
         td {
             padding: 18px 24px;
             border-bottom: 1px solid var(--border);
             font-size: 0.95rem;
             vertical-align: middle;
         }
-        tr:last-child td { border-bottom: none; }
 
-        .customer-info { line-height: 1.4; }
-        .customer-info .name { font-weight: 700; display: block; }
-        .customer-info .phone { font-size: 0.85rem; color: var(--text-muted); }
+        tr:last-child td {
+            border-bottom: none;
+        }
 
-        .item-list { font-size: 0.85rem; color: var(--text-muted); max-width: 250px; line-height: 1.5; }
-        
+        .customer-info {
+            line-height: 1.4;
+        }
+
+        .customer-info .name {
+            font-weight: 700;
+            display: block;
+        }
+
+        .customer-info .phone {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .item-list {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            max-width: 250px;
+            line-height: 1.5;
+        }
+
         /* Status Select Styling */
         .status-select {
             padding: 8px 12px;
@@ -206,11 +310,26 @@ $firebaseConfig = [
             transition: all 0.2s;
             width: 140px;
         }
-        
-        .status-placed { background: #fef3c7; color: #92400e; }
-        .status-preparing { background: #e0e7ff; color: #3730a3; }
-        .status-delivery { background: #ffedd5; color: #9a3412; }
-        .status-delivered { background: #d1fae5; color: #065f46; }
+
+        .status-placed {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-preparing {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .status-delivery {
+            background: #ffedd5;
+            color: #9a3412;
+        }
+
+        .status-delivered {
+            background: #d1fae5;
+            color: #065f46;
+        }
 
         /* --- Buttons & Inputs --- */
         .btn-add {
@@ -221,10 +340,16 @@ $firebaseConfig = [
             border: none;
             font-weight: 700;
             cursor: pointer;
-            display: flex; align-items: center; gap: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             transition: 0.3s;
         }
-        .btn-add:hover { background: var(--primary-dark); transform: translateY(-2px); }
+
+        .btn-add:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
 
         /* --- Grid for Menu/Restaurants --- */
         .menu-grid {
@@ -232,96 +357,215 @@ $firebaseConfig = [
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 24px;
         }
+
         .admin-card {
-            background: white; border-radius: 20px; overflow: hidden;
-            border: 1px solid var(--border); position: relative;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            position: relative;
         }
-        .admin-card img { width: 100%; height: 160px; object-fit: cover; }
-        .admin-card-body { padding: 20px; }
-        .admin-card h4 { margin: 0 0 5px; font-weight: 700; font-size: 1.1rem; }
+
+        .admin-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .admin-card-body {
+            padding: 20px;
+        }
+
+        .admin-card h4 {
+            margin: 0 0 5px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
         .delete-btn {
-            position: absolute; top: 10px; right: 10px;
-            background: white; color: var(--danger);
-            border: none; width: 32px; height: 32px; border-radius: 8px;
-            cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            color: var(--danger);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         /* --- Auth Overlay --- */
         #authOverlay {
-            position: fixed; inset: 0; background: var(--bg-body);
-            z-index: 2000; display: flex; align-items: center; justify-content: center;
+            position: fixed;
+            inset: 0;
+            background: var(--bg-body);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
         .login-box {
-            background: white; padding: 40px; border-radius: 30px;
-            width: 100%; max-width: 400px; border: 1px solid var(--border);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05); text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+            text-align: center;
         }
+
         .login-box input {
-            width: 100%; padding: 16px; margin-bottom: 15px;
-            border: 1px solid var(--border); border-radius: 12px;
-            font-family: inherit; font-size: 1rem;
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
         }
 
         /* --- Modals --- */
         .modal {
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-            z-index: 1000; align-items: center; justify-content: center; padding: 20px;
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
+
         .modal-content {
-            background: white; padding: 30px; border-radius: 24px;
-            width: 100%; max-width: 450px; position: relative;
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 450px;
+            position: relative;
         }
-        .close-modal { position: absolute; right: 20px; top: 20px; cursor: pointer; font-size: 1.5rem; }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
 
         /* =======================================================
            RESPONSIVE REWRITE
            ======================================================= */
         @media (max-width: 992px) {
             .sidebar {
-                position: fixed; left: -280px; top: 0; bottom: 0;
+                position: fixed;
+                left: -280px;
+                top: 0;
+                bottom: 0;
             }
-            .sidebar.active { left: 0; }
-            .mobile-toggle { display: block; }
-            .top-bar { padding: 0 20px; }
-            .content-area { padding: 20px; }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .top-bar {
+                padding: 0 20px;
+            }
+
+            .content-area {
+                padding: 20px;
+            }
         }
 
         @media (max-width: 768px) {
-            .header-flex { flex-direction: column; align-items: flex-start; gap: 15px; }
-            .btn-add { width: 100%; justify-content: center; }
+            .header-flex {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .btn-add {
+                width: 100%;
+                justify-content: center;
+            }
 
             /* --- Table to Card Conversion --- */
-            .table-container { background: transparent; border: none; box-shadow: none; }
-            table, thead, tbody, th, td, tr { display: block; }
-            thead { display: none; }
-            
+            .table-container {
+                background: transparent;
+                border: none;
+                box-shadow: none;
+            }
+
+            table,
+            thead,
+            tbody,
+            th,
+            td,
             tr {
-                background: white; margin-bottom: 20px; padding: 20px;
-                border-radius: 20px; border: 1px solid var(--border);
-                box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+                display: block;
             }
-            
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                background: white;
+                margin-bottom: 20px;
+                padding: 20px;
+                border-radius: 20px;
+                border: 1px solid var(--border);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            }
+
             td {
-                display: flex; justify-content: space-between; align-items: center;
-                padding: 12px 0; border-bottom: 1px solid #f1f5f9;
-                text-align: right; font-size: 0.9rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px 0;
+                border-bottom: 1px solid #f1f5f9;
+                text-align: right;
+                font-size: 0.9rem;
             }
-            td:last-child { border: none; padding-bottom: 0; }
-            td:first-child { padding-top: 0; }
+
+            td:last-child {
+                border: none;
+                padding-bottom: 0;
+            }
+
+            td:first-child {
+                padding-top: 0;
+            }
 
             /* Label Injection */
             td::before {
                 content: attr(data-label);
-                font-weight: 700; text-transform: uppercase;
-                font-size: 0.75rem; color: var(--text-muted);
+                font-weight: 700;
+                text-transform: uppercase;
+                font-size: 0.75rem;
+                color: var(--text-muted);
                 text-align: left;
             }
 
-            .item-list { max-width: 60%; }
-            .status-select { width: 130px; }
+            .item-list {
+                max-width: 60%;
+            }
+
+            .status-select {
+                width: 130px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- AUTH SECTION -->
@@ -333,7 +577,8 @@ $firebaseConfig = [
             <h2 style="margin-bottom: 25px; letter-spacing: -1px;">Admin Login</h2>
             <input type="email" id="adminEmail" placeholder="Email Address">
             <input type="password" id="adminPassword" placeholder="Password">
-            <p id="authError" style="color: var(--danger); font-size: 0.85rem; margin-bottom: 15px; font-weight: 600;"></p>
+            <p id="authError" style="color: var(--danger); font-size: 0.85rem; margin-bottom: 15px; font-weight: 600;">
+            </p>
             <button class="btn-add" id="loginBtn" style="width: 100%; justify-content: center;">Sign In</button>
         </div>
     </div>
@@ -368,22 +613,33 @@ $firebaseConfig = [
         </div>
 
         <div class="content-area">
-            
+
             <!-- DASHBOARD -->
             <div id="dashboard" class="section active">
-                <div class="header-flex"><h1>Overview</h1></div>
+                <div class="header-flex">
+                    <h1>Overview</h1>
+                </div>
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-icon"><i class="fas fa-indian-rupee-sign"></i></div>
-                        <div class="stat-info"><h3 id="stat-revenue">₹0</h3><p>Revenue</p></div>
+                        <div class="stat-info">
+                            <h3 id="stat-revenue">RS0</h3>
+                            <p>Revenue</p>
+                        </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon"><i class="fas fa-bag-shopping"></i></div>
-                        <div class="stat-info"><h3 id="stat-orders">0</h3><p>Total Orders</p></div>
+                        <div class="stat-info">
+                            <h3 id="stat-orders">0</h3>
+                            <p>Total Orders</p>
+                        </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-icon"><i class="fas fa-pizza-slice"></i></div>
-                        <div class="stat-info"><h3 id="stat-dishes">0</h3><p>Active Dishes</p></div>
+                        <div class="stat-info">
+                            <h3 id="stat-dishes">0</h3>
+                            <p>Active Dishes</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -437,9 +693,12 @@ $firebaseConfig = [
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2 style="margin-bottom: 25px;">New Dish</h2>
-            <input type="text" id="dishName" placeholder="Dish Name" class="login-box" style="box-shadow: none; padding: 12px; margin-bottom: 10px;">
-            <input type="number" id="dishPrice" placeholder="Price (₹)" class="login-box" style="box-shadow: none; padding: 12px; margin-bottom: 10px;">
-            <input type="text" id="dishImage" placeholder="Image URL" class="login-box" style="box-shadow: none; padding: 12px; margin-bottom: 20px;">
+            <input type="text" id="dishName" placeholder="Dish Name" class="login-box"
+                style="box-shadow: none; padding: 12px; margin-bottom: 10px;">
+            <input type="number" id="dishPrice" placeholder="Price (RS)" class="login-box"
+                style="box-shadow: none; padding: 12px; margin-bottom: 10px;">
+            <input type="text" id="dishImage" placeholder="Image URL" class="login-box"
+                style="box-shadow: none; padding: 12px; margin-bottom: 20px;">
             <button class="btn-add" id="saveDishBtn" style="width: 100%; justify-content: center;">Save Item</button>
         </div>
     </div>
@@ -449,9 +708,12 @@ $firebaseConfig = [
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2 style="margin-bottom: 25px;">New Restaurant</h2>
-            <input type="text" id="restName" placeholder="Name" class="login-box" style="box-shadow: none; padding: 12px; margin-bottom: 10px;">
-            <input type="number" step="0.1" id="restRating" placeholder="Rating (1-5)" class="login-box" style="box-shadow: none; padding: 12px; margin-bottom: 10px;">
-            <input type="text" id="restImage" placeholder="Image URL" class="login-box" style="box-shadow: none; padding: 12px; margin-bottom: 20px;">
+            <input type="text" id="restName" placeholder="Name" class="login-box"
+                style="box-shadow: none; padding: 12px; margin-bottom: 10px;">
+            <input type="number" step="0.1" id="restRating" placeholder="Rating (1-5)" class="login-box"
+                style="box-shadow: none; padding: 12px; margin-bottom: 10px;">
+            <input type="text" id="restImage" placeholder="Image URL" class="login-box"
+                style="box-shadow: none; padding: 12px; margin-bottom: 20px;">
             <button class="btn-add" id="saveRestBtn" style="width: 100%; justify-content: center;">Add Partner</button>
         </div>
     </div>
@@ -468,7 +730,7 @@ $firebaseConfig = [
 
         // UI Helpers
         const $ = (id) => document.getElementById(id);
-        
+
         // Navigation Logic
         const navItems = document.querySelectorAll('.nav-item:not(.logout-btn)');
         const sections = document.querySelectorAll('.section');
@@ -479,7 +741,7 @@ $firebaseConfig = [
                 item.classList.add('active');
                 sections.forEach(s => s.classList.remove('active'));
                 $(item.dataset.target).classList.add('active');
-                if(window.innerWidth < 992) $('sidebar').classList.remove('active');
+                if (window.innerWidth < 992) $('sidebar').classList.remove('active');
             });
         });
 
@@ -518,22 +780,22 @@ $firebaseConfig = [
                 let revenue = 0, count = 0;
 
                 const orders = [];
-                snapshot.forEach(child => { orders.push({id: child.key, ...child.val()}); });
-                orders.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+                snapshot.forEach(child => { orders.push({ id: child.key, ...child.val() }); });
+                orders.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
                 orders.forEach(order => {
                     revenue += parseFloat(order.total || 0);
                     count++;
                     const itemsText = order.items ? order.items.map(i => `${i.quantity}x ${i.name}`).join(', ') : 'Empty Order';
-                    
+
                     const status = order.status || 'Placed';
-                    const statusClass = status.toLowerCase().includes('delivery') ? 'status-delivery' : 
-                                       status.toLowerCase().includes('prep') ? 'status-preparing' :
-                                       status.toLowerCase().includes('deliv') ? 'status-delivered' : 'status-placed';
+                    const statusClass = status.toLowerCase().includes('delivery') ? 'status-delivery' :
+                        status.toLowerCase().includes('prep') ? 'status-preparing' :
+                            status.toLowerCase().includes('deliv') ? 'status-delivered' : 'status-placed';
 
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                        <td data-label="Order ID" style="font-family:monospace; font-weight:700;">#${order.id.substring(1,7).toUpperCase()}</td>
+                        <td data-label="Order ID" style="font-family:monospace; font-weight:700;">#${order.id.substring(1, 7).toUpperCase()}</td>
                         <td data-label="Customer">
                             <div class="customer-info">
                                 <span class="name">${order.userEmail || 'Guest'}</span>
@@ -543,7 +805,7 @@ $firebaseConfig = [
                         <td data-label="Items">
                             <div class="item-list">${itemsText}</div>
                         </td>
-                        <td data-label="Total" style="font-weight:800; color:var(--primary-dark)">₹${order.total}</td>
+                        <td data-label="Total" style="font-weight:800; color:var(--primary-dark)">Rs${order.total}</td>
                         <td data-label="Status">
                             <select class="status-select ${statusClass}" onchange="updateOrderStatus('${order.id}', this.value)">
                                 <option value="Placed" ${status === 'Placed' ? 'selected' : ''}>Placed</option>
@@ -555,7 +817,7 @@ $firebaseConfig = [
                     `;
                     container.appendChild(tr);
                 });
-                $('stat-revenue').textContent = '₹' + revenue.toLocaleString();
+                $('stat-revenue').textContent = 'Rs' + revenue.toLocaleString();
                 $('stat-orders').textContent = count;
             });
         }
@@ -579,7 +841,7 @@ $firebaseConfig = [
                             <img src="${item.imageUrl}">
                             <div class="admin-card-body">
                                 <h4>${item.name}</h4>
-                                <span style="font-weight:800; color:var(--primary)">₹${item.price}</span>
+                                <span style="font-weight:800; color:var(--primary)">Rs${item.price}</span>
                             </div>
                         </div>
                     `;
@@ -611,7 +873,7 @@ $firebaseConfig = [
 
         // CRUD Operations
         window.deleteItem = (path, id) => {
-            if(confirm('Delete this item permanently?')) db.ref(`${path}/${id}`).remove();
+            if (confirm('Delete this item permanently?')) db.ref(`${path}/${id}`).remove();
         };
 
         // Modals
@@ -624,8 +886,8 @@ $firebaseConfig = [
 
         $('saveDishBtn').onclick = () => {
             const name = $('dishName').value, price = $('dishPrice').value, imageUrl = $('dishImage').value;
-            if(name && price && imageUrl) {
-                db.ref('dishes').push({name, price, imageUrl}).then(() => {
+            if (name && price && imageUrl) {
+                db.ref('dishes').push({ name, price, imageUrl }).then(() => {
                     dishM.style.display = 'none';
                     $('dishName').value = ''; $('dishPrice').value = ''; $('dishImage').value = '';
                 });
@@ -634,8 +896,8 @@ $firebaseConfig = [
 
         $('saveRestBtn').onclick = () => {
             const name = $('restName').value, rating = $('restRating').value, imageUrl = $('restImage').value;
-            if(name && rating && imageUrl) {
-                db.ref('restaurants').push({name, rating, imageUrl}).then(() => {
+            if (name && rating && imageUrl) {
+                db.ref('restaurants').push({ name, rating, imageUrl }).then(() => {
                     restM.style.display = 'none';
                     $('restName').value = ''; $('restRating').value = ''; $('restImage').value = '';
                 });
@@ -644,4 +906,5 @@ $firebaseConfig = [
 
     </script>
 </body>
+
 </html>
