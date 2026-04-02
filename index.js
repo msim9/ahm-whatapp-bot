@@ -112,7 +112,7 @@ async function startBot() {
                 console.log("Firebase Error: ", error);
             }
 
-            await sock.sendMessage(sender, { text: `✅ *Order Placed Successfully!* \n\nThank you! Your order for *${item.name}* is being prepared. \n\n*Total:* ₹${javaGoatOrder.total} (Inc. Delivery)\n*Status:* Preparing\n\nWe will deliver it to your address soon.` });
+            await sock.sendMessage(sender, { text: `✅ *Order Placed Successfully!* \n\nThank you! Your order for *${item.name}* is being prepared. \n\n*Total:* RS${javaGoatOrder.total} (Inc. Delivery)\n*Status:* Preparing\n\nWe will deliver it to your address soon.` });
             delete orderStates[sender]; 
             return;
         }
@@ -133,7 +133,7 @@ async function startBot() {
             orderStates[sender] = { step: 'WAITING_FOR_ADDRESS', item: matchedItem };
             
             // 🌟 NEW: SEND PRODUCT IMAGE + ASK FOR PHONE NUMBER 🌟
-            const captionText = `🛒 *Order Started!* \n\nYou selected: *${matchedItem.name}* (₹${matchedItem.price})\n\nPlease reply with your *Full Name, Phone Number, and Delivery Address*.`;
+            const captionText = `🛒 *Order Started!* \n\nYou selected: *${matchedItem.name}* (RS${matchedItem.price})\n\nPlease reply with your *Full Name, Phone Number, and Delivery Address*.`;
             
             // If the product has an image URL in Firebase, send it as a WhatsApp Photo
             if (matchedItem.imageUrl) {
@@ -160,7 +160,7 @@ async function startBot() {
 
             let menuMessage = "🍔 *AHM Food LIVE MENU* 🍕\n\n";
             currentMenu.forEach(item => {
-                menuMessage += `🔸 *${item.name}* - ₹${item.price}\n`;
+                menuMessage += `🔸 *${item.name}* - RS${item.price}\n`;
             });
             menuMessage += "\n_To order, reply with 'order [dish name]'_";
             
