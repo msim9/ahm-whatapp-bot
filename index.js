@@ -168,7 +168,27 @@ async function startBot() {
 
         // --- GREETINGS ---
         else if (text.includes("hi") || text.includes("hello") || text.includes("hey")) {
-            await sock.sendMessage(sender, { text: "👋 *Welcome to Ahm Food!* \n\nI am your AI Assistant. Type *menu* to see our delicious food, or type *order [dish]* to buy instantly!" });
+            const listMessage = {
+                text: "👋 *Welcome to Ahm Food!*\n\nI am your AI Assistant.\nTap the desired option:",
+                title: "How can I help you?",
+                buttonText: "Show Options",
+                sections: [
+                    {
+                        title: "Select Food Services",
+                        rows: [
+                            {title: "🍔 View Menu", rowId: "menu", description: "See our delicious food"},
+                            {title: "🛒 Order Now", rowId: "order", description: "Order your favorite dish!"}
+                        ]
+                    },
+                    {
+                        title: "Select Other Services",
+                        rows: [
+                            {title: "📞 Contact Support", rowId: "contact", description: "Get help from our team"}
+                        ]
+                    }
+                ]
+            };
+            await sock.sendMessage(sender, listMessage);
         }
         else if (text.includes("contact") || text.includes("call")) {
             await sock.sendMessage(sender, { text: "📞 *Contact Ahm Food:* \n\n- *Email:* support@ahmfood.com" });
