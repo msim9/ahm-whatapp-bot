@@ -1,6 +1,8 @@
 name: JavaGoat-WhatsApp-Bot
 
 on:
+  push:
+    branches: [ main ]
   workflow_dispatch:
   schedule:
     - cron: '0 */5 * * *' 
