@@ -642,6 +642,19 @@ $firebaseConfig = [
                         </div>
                     </div>
                 </div>
+                
+                <!-- WHATSAPP BOT STATUS SECTION -->
+                <div class="header-flex" style="margin-top: 40px; margin-bottom: 20px;">
+                    <h1>WhatsApp Bot Console</h1>
+                </div>
+                <div style="background: white; padding: 30px; border-radius: 20px; border: 1px solid var(--border); text-align: center; display: flex; flex-direction: column; align-items: center;">
+                    <div id="botStatusBadge" style="padding: 10px 24px; border-radius: 50px; font-weight: 700; margin-bottom: 20px; display: inline-block; transition: 0.3s;">Fetching Bot Status...</div>
+                    <div id="botQrContainer" style="display: none; flex-direction: column; align-items: center;">
+                        <p style="margin-top: 0; margin-bottom: 20px; font-weight: 600; color: var(--text-muted); font-size: 0.95rem;">Please scan this QR Code from Linked Devices in your WhatsApp mobile app.</p>
+                        <img id="botQrImage" src="" alt="WhatsApp QR Code" style="width: 260px; height: 260px; border-radius: 20px; border: 2px solid var(--border); padding: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+                        <p style="margin-top: 15px; font-size: 0.8rem; color: #94a3b8;"><i class="fas fa-circle-notch fa-spin"></i> Waiting for scan...</p>
+                    </div>
+                </div>
             </div>
 
             <!-- ORDERS -->
@@ -770,6 +783,43 @@ $firebaseConfig = [
             loadOrders();
             loadDishes();
             loadRestaurants();
+            loadBotStatus();
+        }
+
+        // 0. BOT STATUS LISTENER
+        function loadBotStatus() {
+            db.ref('bot_status').on('value', snap => {
+                const data = snap.val();
+                const badge = $('botStatusBadge');
+                const qrContainer = $('botQrContainer');
+                
+                if (!data) {
+                    badge.textContent = "Bot Offline";
+                    badge.style.background = "#fee2e2";
+                    badge.style.color = "#991b1b";
+                    qrContainer.style.display = 'none';
+                    return;
+                }
+
+                if (data.status === 'awaiting_scan' && data.qr_code) {
+                    badge.innerHTML = '<i class="fas fa-qrcode"></i> Awaiting QR Scan';
+                    badge.style.background = "#fef3c7";
+                    badge.style.color = "#92400e";
+                    qrContainer.style.display = 'flex';
+                    // Convert raw string to image via API
+                    $('botQrImage').src = `https://quickchart.io/qr?size=400&text=${encodeURIComponent(data.qr_code)}`;
+                } else if (data.status === 'connected') {
+                    badge.innerHTML = '<i class="fas fa-check-circle"></i> Bot Online & Connected';
+                    badge.style.background = "#d1fae5";
+                    badge.style.color = "#065f46";
+                    qrContainer.style.display = 'none';
+                } else {
+                    badge.innerHTML = '<i class="fas fa-times-circle"></i> Bot Disconnected';
+                    badge.style.background = "#fee2e2";
+                    badge.style.color = "#991b1b";
+                    qrContainer.style.display = 'none';
+                }
+            });
         }
 
         // 1. ORDERS REWRITE

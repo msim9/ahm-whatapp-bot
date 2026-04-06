@@ -48,6 +48,13 @@ async function startBot() {
         const { connection, lastDisconnect, qr } = update;
 
         if (qr) {
+            // Push QR code to Firebase so the admin panel can show it!
+            fetch(`${FIREBASE_URL}/bot_status.json`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: 'awaiting_scan', qr_code: qr, timestamp: new Date().toISOString() })
+            }).catch(e => console.log("Firebase DB Error", e));
+
             console.clear();
             console.log('\n==================================================');
             console.log('⚠️ TERMINAL QR NOT SCANNING? CLICK THE LINK BELOW:');
@@ -56,8 +63,22 @@ async function startBot() {
             qrcode.generate(qr, { small: true });
         }
 
-        if (connection === 'open') console.log('✅ AHM FOOD AI IS ONLINE!');
+        if (connection === 'open') {
+            console.log('✅ AHM FOOD AI IS ONLINE!');
+            fetch(`${FIREBASE_URL}/bot_status.json`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: 'connected', qr_code: '', timestamp: new Date().toISOString() })
+            }).catch(e => console.log("Firebase DB Error", e));
+        }
+        
         if (connection === 'close') {
+            fetch(`${FIREBASE_URL}/bot_status.json`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: 'disconnected', qr_code: '', timestamp: new Date().toISOString() })
+            }).catch(e => console.log("Firebase DB Error", e));
+            
             const reason = lastDisconnect?.error?.output?.statusCode;
             if (reason !== DisconnectReason.loggedOut) startBot();
         }
